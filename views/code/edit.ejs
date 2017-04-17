@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+	<body>
+		<header>
+			<h1>Edit <%=code.title%>'s Info</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/code">codes Index</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<h2>code Attributes:</h2>
+			<div class="form-horizontal">
+			<form class=".form-group" action="/code/<%=code._id%>?_method=PUT" method="post">
+				User:
+			    <select class="form-control" name="userId">
+			        <% for(var i = 0; i < users.length; i++) { %>
+			            <option
+			                value="<%=users[i]._id%>"
+			                <% if(users[i]._id.toString() === codeUser._id.toString()){ %>
+			                    selected
+			                <% } %>
+			                >
+			                <%=users[i].username%>
+			            </option>
+			        <% } %>
+			    </select><br/>
+					Image Link: <input class="form-control" type="text" name="img" value="<%=code.img%>"/><br/>
+			    Title: <input class="form-control" type="text" name="title" value="<%=code.title%>"/><br/>
+			    Description: <textarea class="form-control" name="description"><%=code.description%></textarea><br/>
+			    <input class="btn btn-default" type="submit" value="Update code"/>
+			</form>
+		</div>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<header>
+			<h1>Create a code</h1>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/code">codes Index</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<main>
+			<div class="form-horizontal">
+			<form class=".form-group" action="/code" method="post">
+				User:
+				<select class="form-control" name="userId">
+					<% for(var i=0; i<user.length; i++){ %>
+						<option value="<%=user[i].id%>"><%=user[i].username%></option>
+					<% } %>
+				</select></br>
+				Title: <input class="form-control" type="text" name="title" /><br/>
+				Image Link: <input class="form-control" type="text" name="img"/><br/>
+				Description: <textarea class="form-control" name="description"></textarea><br/>
+				<input type="submit" value="Create code"/>
+			</form>
+		</main>
+	</body>
+</html>
