@@ -29,7 +29,12 @@
             <a href="/code/new">New Code</a>
 
             <a href="/user/<%=currentuser._id%>"><%=currentuser.username%></a>
-
+            <section>
+              <form class=".form-group" action="/search/" method="POST">
+              <input class="form-control" type="text" name="query" /><br/>
+              <input type="submit" value="Search"/>
+            </form>
+            </section>
             <section>
                 <h4>Code Snips<h4>
                 <ul>

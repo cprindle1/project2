@@ -9,6 +9,7 @@ var Code = require('./models/code.js');
 var port = process.env.PORT || 3000;
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/code';
 
+
 app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({extened:false}));
 app.use(session({
@@ -30,6 +31,32 @@ app.use('/sessions', sessionController);
 
 app.get('/', function(req, res){
   Code.find({public: true}, function(error, foundCode){
+    res.render('index.ejs', {
+      currentuser: req.session.currentuser,
+      code: foundCode
+    });
+  });
+});
+
+app.post("/search", function(req, res) {
+  console.log("QUERY: " + req.body.query);
+  Code.find(
+    { $text : { $search : req.body.query } },
+    { score : { $meta: "textScore" } }
+  )
+  .sort({ score : { $meta : 'textScore' } })
+  .exec(function(err, results) {
+    console.log(results);
+    res.render('index.ejs', {
+      currentuser: req.session.currentuser,
+      code: results
+    });
+  });
+});
+
+app.get('/:tag', function(req, res){
+  Code.find({tags: {$elemMatch: {$eq: req.params.tag}}}, function(error, foundCode){
+    console.log("HITTING HERE");
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
       code: foundCode

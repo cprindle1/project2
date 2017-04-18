@@ -6,8 +6,10 @@ var codeSchema = mongoose.Schema({
   description: String,
 	userID: String,
 	public: Boolean,
-	tags: [String]
+	tags: []
 });
+
+codeSchema.index({description: 'text', tags: 'text', code: 'text', title: 'text'});
 
 var code = mongoose.model('code', codeSchema);
 

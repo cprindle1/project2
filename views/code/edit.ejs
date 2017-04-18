@@ -27,6 +27,7 @@
 					Title: <input class="form-control" type="text" name="title" value="<%=code.title%>"/><br/>
 			    Description: <input class="form-control" type="text" name="description" value="<%=code.description%>"/><br/>
 			    Code: <textarea class="form-control" name="code"><%=code.code%></textarea><br/>
+					Tags: <textarea class="form-control" name="tags"><%=code.tags.join(" ")%></textarea></br>
 					Public: <input type="checkbox" name="public"
 							<% if(code.public === true){ %>
 									checked

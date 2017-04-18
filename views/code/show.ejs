@@ -40,7 +40,7 @@
 			</section>
 			<section class='description'>
 				Tags: <%for(var i=0; i<code.tags.length; i++){%>
-					<%=code.tags[i];%>
+					<a href='/<%=code.tags[i]%>'><%=code.tags[i];%></a>
 				<% } %>
 			</section>			<section class='description'>
 				Public: <%=code.public%>

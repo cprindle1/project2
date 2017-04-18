@@ -58,6 +58,7 @@ router.put('/:id', function(req, res){
 	}else{
 		req.body.public = false;
 	}
+	req.body.tags=req.body.tags.split(" ");
 	Code.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, updatedCode){
 		User.findOne({'codes._id': req.params.id}, function(err, foundUser){
 				foundUser.codes.id(req.params.id).remove();
