@@ -27,7 +27,7 @@
 			    <h4>codes Posted By This User:</h4>
 			    <ul>
 			        <% for(var i = 0; i < user.codes.length; i++){ %>
-								<li class="noBullets"><a href="/code/<%=user.codes[i]._id%>"><img class="thumbs" src='<%=user.codes[i].img%>'</a></li>
+								<li class="noBullets"><a href="/code/<%=user.codes[i]._id%>"> <%=user.codes[i].title%></a></li>
 			        <% } %>
 			    </ul>
 			</section>

@@ -23,15 +23,11 @@
 		<main>
 			<div class="form-horizontal">
 			<form class=".form-group" action="/code" method="post">
-				User:
-				<select class="form-control" name="userId">
-					<% for(var i=0; i<user.length; i++){ %>
-						<option value="<%=user[i].id%>"><%=user[i].username%></option>
-					<% } %>
-				</select></br>
 				Title: <input class="form-control" type="text" name="title" /><br/>
-				Image Link: <input class="form-control" type="text" name="img"/><br/>
-				Description: <textarea class="form-control" name="description"></textarea><br/>
+				Description: <input class="form-control" type="text" name="description" /><br/>
+				Code: <textarea class="form-control" name="code"></textarea><br/>
+				Tags: <input class="form-control" type="text" name="tags" /><br/>
+				Public: <input type="checkbox" name="public" /><br/>
 				<input type="submit" value="Create code"/>
 			</form>
 		</main>

@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var methodOverride = require('method-override');
+var Code = require('./models/code.js');
 
 var port = process.env.PORT || 3000;
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/code';
@@ -21,13 +22,18 @@ app.use(express.static('public'));
 var usersController = require('./controllers/user.js');
 app.use('/user', usersController);
 
+var codeController = require('./controllers/code.js');
+app.use('/code', codeController);
+
 var sessionController = require('./controllers/sessions.js');
 app.use('/sessions', sessionController);
 
 app.get('/', function(req, res){
-  console.log(req.session);
-  res.render('index.ejs', {
-    currentuser: req.session.currentuser
+  Code.find({public: true}, function(error, foundCode){
+    res.render('index.ejs', {
+      currentuser: req.session.currentuser,
+      code: foundCode
+    });
   });
 });
 

@@ -13,24 +13,30 @@ router.get('/', function(req, res){
 });
 
 router.get('/new', function(req, res){
-	User.find({}, function(err, foundUser){
 		res.render('code/new.ejs',{
-			user: foundUser
+			user: req.session.currentuser
 		});
 	});
-});
 
 router.post('/', function(req, res){
-	User.findById(req.body.userId, function(err, foundUser){
+	if(req.body.public === 'on'){
+		req.body.public = true;
+	}else{
+		req.body.public = false;
+	}
+	req.body.tags=req.body.tags.split(" ");
+	User.findById(req.session.currentuser._id, function(err, foundUser){
 		Code.create(req.body, function(err, createdCode){
+			createdCode.userID=req.session.currentuser._id;
+			createdCode.save(function(err, savedCode){
 			foundUser.codes.push(createdCode);
 			foundUser.save(function(err, savedUser){
-				res.redirect('/code');
-			});
+					res.redirect('/');
 		});
 	});
 });
-
+});
+});
 
 router.get('/:id/edit', function(req, res){
 	Code.findById(req.params.id, function(err, foundCode){
@@ -47,35 +53,28 @@ router.get('/:id/edit', function(req, res){
 });
 
 router.put('/:id', function(req, res){
+	if(req.body.public === 'on'){
+		req.body.public = true;
+	}else{
+		req.body.public = false;
+	}
 	Code.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, updatedCode){
 		User.findOne({'codes._id': req.params.id}, function(err, foundUser){
-			if(foundUser._id.toString() !== req.body.userId){
-				foundUser.codes.id(req.params.id).remove();
-				foundUser.save(function(err, savedFoundUser){
-					User.findById(req.body.userId, function(err, newUser){
-						newUser.codes.push(updatedCode);
-						newUser.save(function(err, savedNewUser){
-							res.redirect('/code/'+req.params.id);
-						});
-					});
-				});
-			}else{
 				foundUser.codes.id(req.params.id).remove();
 				foundUser.codes.push(updatedCode);
 				foundUser.save(function(err, data){
-					res.redirect('/code/'+req.params.id);
+					res.redirect('/user/'+foundUser._id);
 				});
-			}
+			});
 		});
 	});
-});
 
 router.delete('/:id', function(req, res){
-	Codes.findByIdAndRemove(req.params.id, function(err, foundCodes){
+	Code.findByIdAndRemove(req.params.id, function(err, foundCodes){
 		User.findOne({'codes._id':req.params.id}, function(err, foundUser){
 			foundUser.codes.id(req.params.id).remove();
 			foundUser.save(function(err, data){
-				res.redirect('/codes');
+				res.redirect('/user/'+req.session.currentuser._id);
 			});
 		});
 	});
@@ -83,13 +82,9 @@ router.delete('/:id', function(req, res){
 
 router.get('/:id', function(req, res){
 	Code.findById(req.params.id, function(err, foundCode){
-		User.findOne({'codes._id':req.params.id}, function(err, foundUser){
-			console.log(foundUser);
-
 			res.render('code/show.ejs', {
-				user: foundUser,
+				user: req.session.currentuser,
 				code: foundCode
-			});
 		});
 	});
 });

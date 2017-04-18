@@ -27,19 +27,35 @@
 				<img class = 'image' src="<%=code.img%>">
 			</section>
 		<div class='by'>
-			<small>by: <a href="/user/<%=user._id%>"><%=user.username%></a></small>
+			<small>by: <a href="/user/<%=code.userID%>">Creator</a></small>
 		</div>
+			<section class='description'>
+				Title: <%=code.title%>
+			</section>
+			<section class='description'>
+				Code: <%=code.code%>
+			</section>
 			<section class='description'>
 				Description: <%=code.description%>
 			</section>
+			<section class='description'>
+				Tags: <%for(var i=0; i<code.tags.length; i++){%>
+					<%=code.tags[i];%>
+				<% } %>
+			</section>			<section class='description'>
+				Public: <%=code.public%>
+			</section>
 		</main>
+		<%if(user._id==code.userID){ %>
     <section>
     <form action="/code/<%=code._id%>?_method=DELETE" method="post">
         <input type="submit" value="Delete code"/>
     </form>
     <section>
     <a href="/code/<%=code._id%>/edit">Edit</a>
-</section>
+	</section>
+	<% } %>
+
 </section>
 	</body>
 </html>

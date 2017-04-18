@@ -29,6 +29,18 @@
             <a href="/code/new">New Code</a>
 
             <a href="/user/<%=currentuser._id%>"><%=currentuser.username%></a>
+
+            <section>
+                <h4>Code Snips<h4>
+                <ul>
+                  <% if(code !== null){ %>
+                    <% for(var i = 0; i < code.length; i++){ %>
+                      <li class="noBullets"><a href="/code/<%=code[i]._id%>"> <%=code[i].title%></a></li>
+                    <% } %>
+                    <% } %>
+
+                </ul>
+            </section>
           </li>
         <%}%>
       </ul>

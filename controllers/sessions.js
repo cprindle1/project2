@@ -13,8 +13,14 @@ router.post('/', function(req, res){
   User.findOne({username: req.body.username}, function(err, foundUser){
     if(foundUser !== null){
       if(bcrypt.compareSync(req.body.password, foundUser.password)){
+
+        Code.find({}, function(err, foundCode){
+          req.session.code=foundCode;
+          console.log("FOUND CODE: "+req.session.code);
         req.session.currentuser = foundUser;
         res.redirect('/');
+      });
+
       }else{
         res.send('wrong password');
     }

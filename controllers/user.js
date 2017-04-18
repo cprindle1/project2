@@ -8,10 +8,19 @@ var Code = require('../models/code.js');
 
 router.post('/', function(req, res){
 	req.body.password=bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-	User.create(req.body, function(err, createduser){
-		res.redirect('/');
+	User.findOne({username: req.body.username}, function(err, foundUser){
+		if(foundUser === null){
+			User.create(req.body, function(err, createduser){
+				req.session.currentuser = createduser;
+				res.redirect('/');
+			});
+		}else{
+			res.redirect('/');
+		}
 	});
 });
+
+
 router.get('/', function(req, res){
 	User.find({}, function(err, founduser){
 		res.render('user/index.ejs', {
@@ -43,12 +52,13 @@ router.put('/:id', function(req, res){
 });
 
 router.get('/:id', function(req, res){
-	User.findById(req.params.id, function(err, founduser){
+	User.findById(req.params.id, function(err, foundUser){
 		res.render('user/show.ejs', {
-			user: founduser
+			user: foundUser
 		});
 	});
 });
+
 
 router.delete('/:id', function(req, res){
 	User.findByIdAndRemove(req.params.id, function(err, foundUser){
