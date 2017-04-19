@@ -17,6 +17,8 @@ router.post('/', function(req, res){
           req.session.code=foundCode;
           req.session.currentuser = foundUser;
           req.session.valid=true;
+          req.session.username=true;
+          req.session.password=true;
           res.redirect('/');
       });
       }else{

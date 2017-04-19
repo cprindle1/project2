@@ -2,34 +2,36 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>New CodeSnip</title>
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+			<link rel="stylesheet" href='/css/style.css'>
+
 	</head>
 
 	<body>
-		<header>
-			<h1>Create a code</h1>
-			<nav>
-				<ul>
-					<li>
-						<a href="/">Home</a>
-					</li>
-					<li>
-						<a href="/code">codes Index</a>
-					</li>
-				</ul>
-			</nav>
+		<header class='header'>
+			<h1 class='title'>New CodeSnip(){ </h1></br>
+			<a class = "homeLink" href="/">Home</a>
+			<a class = "editLink" href="/user/<%=user._id%>/edit">Edit User Info</a>
 		</header>
 		<main>
-			<div class="form-horizontal">
+		</br>
+			<div class="newCode form-horizontal">
 			<form class=".form-group" action="/code" method="post">
-				Title: <input class="form-control" type="text" name="title" /><br/>
-				Description: <input class="form-control" type="text" name="description" /><br/>
-				Code: <textarea class="form-control" name="code"></textarea><br/>
-				Tags: <input class="form-control" type="text" name="tags" /><br/>
+				Title: <input class="form-control" type="text" name="title" maxlength='20'/><br/>
+				Description: <input class="form-control" type="text" name="description" maxlength='75' /><br/>
+				Code: <textarea class="codeInput form-control" name="code" maxlength='1000'></textarea><br/>
+				Tags: <input class="form-control" type="text" name="tags" maxlength='50'/><br/>
 				Public: <input type="checkbox" name="public" /><br/>
 				<input type="submit" value="Create code"/>
-			</form>
+			</form></br>
 		</main>
+		<footer class="footer">
+			<h1>};</h1>
+			<div class='footerContent'>
+				<a class = 'footerElement' href="#">Contact</a>
+				<a class = 'footerElement' href="#">About</a>
+			</div>
+		</footer>
 	</body>
 </html>

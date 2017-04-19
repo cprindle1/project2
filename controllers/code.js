@@ -3,6 +3,7 @@ var router = express.Router();
 var Code = require('../models/code.js');
 var User = require('../models/user.js');
 var session = require('express-session');
+var newCodes = require('../models/populateCode.js');
 
 router.get('/', function(req, res){
 	Code.find({}, function(err, foundcode){
@@ -13,9 +14,13 @@ router.get('/', function(req, res){
 });
 
 router.get('/new', function(req, res){
+	if(req.session.currentuser !== undefined){
 		res.render('code/new.ejs',{
 			user: req.session.currentuser
 		});
+	}else{
+		res.redirect('/user/new');
+	}
 	});
 
 router.post('/', function(req, res){
@@ -31,7 +36,10 @@ router.post('/', function(req, res){
 			createdCode.save(function(err, savedCode){
 			foundUser.codes.push(createdCode);
 			foundUser.save(function(err, savedUser){
-					res.redirect('/');
+				res.render('user/show.ejs', {
+					code: req.session.code,
+					user: req.session.currentuser
+				});
 		});
 	});
 });

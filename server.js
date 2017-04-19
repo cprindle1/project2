@@ -6,6 +6,7 @@ var session = require('express-session');
 var methodOverride = require('method-override');
 var Code = require('./models/code.js');
 
+
 var port = process.env.PORT || 3000;
 var mongoDBURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/code';
 
@@ -32,6 +33,8 @@ app.use('/sessions', sessionController);
 app.get('/', function(req, res){
   if(req.session.valid===undefined){
     req.session.valid=true;
+    req.session.username=true;
+    req.session.password=true;
   }
   Code.find({public: true}, function(error, foundCode){
     res.render('index.ejs', {
@@ -53,7 +56,8 @@ app.post("/search", function(req, res) {
     console.log(results);
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
-      code: results
+      code: results,
+      valid: true
     });
   });
 });
@@ -63,18 +67,19 @@ app.get('/:tag', function(req, res){
     console.log("HITTING HERE");
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
-      code: foundCode
+      code: foundCode,
+      valid: true
     });
   });
 });
 
-app.get('/app', function(req, res){
-  if(req.session.currentuser !== undefined){
-    res.render('code/index.ejs');
-  }else{
-    res.redirect('/sessions/new');
-  }
-});
+// app.get('/app', function(req, res){
+//   if(req.session.currentuser !== undefined){
+//     res.render('code/index.ejs');
+//   }else{
+//     res.redirect('/sessions/new');
+//   }
+// });
 
 mongoose.connect(mongoDBURI);
 

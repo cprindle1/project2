@@ -1,6 +1,7 @@
 body{
   font-family: courier;
   background-color: #E6DDBC;
+  padding-bottom: 75px;
 }
 
 #invalid{
@@ -8,15 +9,21 @@ body{
   color: #690203
 }
 
+
+
 .header{
+  position: sticky;
+  height: 75px;
+  z-index: 1;
   background-color: black;
   color: white;
-  position: absolute;
+  display: inline-block;
   top: 0;
   width: 100%
 }
 
 .header h1{
+  float: left;
   text-shadow: 3px 2px #690203;
 }
 
@@ -26,6 +33,7 @@ body{
 }
 
 .blurb{
+  line-height: 45px;
   color: white;
   float: left;
   margin: 0;
@@ -35,6 +43,8 @@ body{
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   background: white;
+  overflow: auto;
+  height: 15%;
 }
 
 .searchBar{
@@ -42,9 +52,13 @@ body{
   text-align: right;
   border-bottom: 3px solid black;
   padding-top: 5px;
+  top: 74px;
+  position: sticky;
+  z-index: 1;
 }
-
-
+.newCodeForm{
+  float: left;
+}
 
 .snips{
   position: relative;
@@ -53,9 +67,11 @@ body{
 
 .tags{
   color: white;
+  overflow: auto;
+  /*height: 5%;*/
   text-decoration: none;
   position: absolute;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
 }
  .singleTag{
    color: #690203;
@@ -64,6 +80,9 @@ body{
  .singleTag:hover{
    cursor: pointer;
    color: white;
+ }
+ .title{
+   height: 5%;
  }
 
 .titleHead{
@@ -77,19 +96,20 @@ body{
 .codeSnip{
   background-color: gray;
   margin: 10px;
-  width: 250px;
-  height: 250px;
+  width: 425px;
+  height: 425px;
   display: inline-block;
   text-align: justify;
   border: 1px solid black;
   border-radius: 5px;
   box-shadow: 5px 5px 5px black;
+  overflow: auto;
 }
 
 .codeSnipOne{
   background-color: gray;
   margin: 10px;
-  width: 50%;
+  width: 60%;
   height: 500px;
   display: inline-block;
   text-align: justify;
@@ -106,6 +126,7 @@ body{
   font-family: courier;
   background: white;
   height: 70%;
+  overflow: auto;
 }
 
 .codeSnip h4{
@@ -114,14 +135,17 @@ body{
   text-transform: capitalize;
 }
 
+
+
 .loginBox{
   color: black;
-  position: absolute;
+  float: right;
+  /*position: fixed;
   top: 0;
-  right: 0;
+  right: 0;*/
   margin-top: 25px;
   margin-right: 5px;
-  display: inline-block;
+  /*display: inline-block;*/
 }
 .loginInput{
   border-radius: 5px;
@@ -219,11 +243,25 @@ body{
   color: white;
   margin-right: 5px;
   float: left;
-  margin-top: 15px;
 }
+
+.newCode{
+  width: 75%;
+  margin-left: 12%;
+  margin-right: 12%;
+}
+
+.newCode textarea{
+  height: 200px;
+  overflow: auto;
+  resize: none;
+}
+
 
 .userEdit{
   width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
 #registerLink{
@@ -249,8 +287,11 @@ body{
 }
 
 .footerContent{
+
   margin-top: 25px;
   text-align: center;
+  background-color: black;
+
 }
 
 .footerElement{

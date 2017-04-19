@@ -7,9 +7,12 @@ var Code = require('../models/code.js');
 
 
 router.post('/', function(req, res){
+if((req.body.username.length>=4 && req.body.password.length>=8) && (req.body.password===req.body.password2)){
 	req.body.password=bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
 	User.findOne({username: req.body.username}, function(err, foundUser){
 		if(foundUser === null){
+			req.session.username=true;
+			req.session.password=true;
 			User.create(req.body, function(err, createduser){
 				req.session.currentuser = createduser;
 				res.redirect('/');
@@ -19,6 +22,13 @@ router.post('/', function(req, res){
 			res.redirect('/user/new');
 		}
 	});
+}else if(req.body.username.length<4){
+	req.session.username=false;
+	res.redirect('/user/new');
+}else if((req.body.password!==req.body.password2)||(req.body.password.length<8)){
+	req.session.password=false;
+	res.redirect('/user/new');
+}
 });
 
 
@@ -36,7 +46,9 @@ router.get('/', function(req, res){
 
 router.get('/new', function(req, res){
   res.render('user/new.ejs', {
-		valid: req.session.valid
+		valid: req.session.valid,
+		username: req.session.username,
+		password: req.session.password
 	});
 
 
@@ -59,7 +71,6 @@ router.put('/:id', function(req, res){
 	}
 	User.findOne({username: req.body.username}, function(err, foundUser){
 		if(foundUser === null || foundUser.username===req.session.currentuser.username){
-			console.log("FOUNDUSER "+foundUser);
 			User.findByIdAndUpdate(req.params.id, req.body, function(err, foundUser){
 			User.findById(req.params.id, function(err, foundUpdatedUser){
 				req.session.currentuser = foundUpdatedUser;
@@ -69,7 +80,6 @@ router.put('/:id', function(req, res){
 			});
 		});
 		}else{
-			console.log("RENDERING FROM HERE");
 			res.render('user/edit.ejs', {
 				user: req.session.currentuser,
 				valid: req.session.valid=false

@@ -24,10 +24,10 @@
 			<div class="form-horizontal">
 			<form class=".form-group" action="/code/<%=code._id%>?_method=PUT" method="post">
 
-					Title: <input class="form-control" type="text" name="title" value="<%=code.title%>"/><br/>
-			    Description: <input class="form-control" type="text" name="description" value="<%=code.description%>"/><br/>
-			    Code: <textarea class="form-control" name="code"><%=code.code%></textarea><br/>
-					Tags: <textarea class="form-control" name="tags"><%=code.tags.join(" ")%></textarea></br>
+					Title: <input class="form-control" type="text" name="title" value="<%=code.title%>" maxlength='20'/><br/>
+			    Description: <input class="form-control" type="text" name="description" value="<%=code.description%>" maxlength='75'/><br/>
+			    Code: <textarea class="form-control" name="code" maxlength='1000'><%=code.code%></textarea><br/>
+					Tags: <textarea class="form-control" name="tags" maxlength='50'><%=code.tags.join(" ")%></textarea></br>
 					Public: <input type="checkbox" name="public"
 							<% if(code.public === true){ %>
 									checked

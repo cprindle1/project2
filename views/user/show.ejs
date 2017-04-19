@@ -5,30 +5,28 @@
 		<title></title>
 				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 				<link rel="stylesheet" href='/css/style.css'>
-
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 	</head>
 	<body>
 		<header class='header'>
-			<h1 class='title'><%=user.username%>(){</h1>
+			<h1 class='title'><%=user.username%>(){ </h1></br>
 			<a class = "homeLink" href="/">Home</a>
 			<a class = "editLink" href="/user/<%=user._id%>/edit">Edit User Info</a>
 		</header>
 		<main>
-		</br></br></br>
 		<section class="searchBar">
-			<form class=".form-group" action="/code/new">
-	      <input class="newCodeButton" type="submit" value="New Code Snip"/></br>
+			<form class="newCodeForm .form-group" action="/code/new">
+	      <input class="newCodeButton" type="submit" value="New CodeSnip"/></br>
 	    </form>
 			<h4><%=user.username%>'s Code Snips</h4>
 		</section>
 		<section class='snips'>
-			<%console.log(user)%>
 			<% if(user.codes !== undefined){ %>
 				<% for(var i = 0; i < user.codes.length; i++){ %>
 						<div class="codeSnip">
 						<h4><a class = "titleHead" href="/code/<%=user.codes[i]._id%>"> <%=user.codes[i].title%></a></h4>
 						<div class="description"><%=user.codes[i].description%></br></div>
-						<div class="code"><%=user.codes[i].code%></br></div>
+						<div class="code"><pre class="prettyprint"><%=user.codes[i].code%></pre></br></div>
 						<div class='tags'>
 							<%for(var j=0; j<user.codes[i].tags.length; j++){%>
 								<%=user.codes[i].tags[j];%>

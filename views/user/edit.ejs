@@ -9,12 +9,11 @@
 	</head>
 	<body>
 			<header class='header'>
-				<h1 class='title'><%=user.username%>(){</h1>
+				<h1 class='title'><%=user.username%>(){</h1></br>
 				<a class = "homeLink" href="/">Home</a>
 				<a class = "editLink" href="/user/<%=user._id%>/">Profile</a>
 			</header>
 			<main>
-			</br></br></br>
 			<section class="searchBar">
 		  </br>
 			<div class = "blurb">Update your username or password...</div>
@@ -23,17 +22,17 @@
 		    </form>
 		  </section>
 		<main>
-			<div class="userEdit form-horizontal">
+			<section class="userEdit form-horizontal">
 				<% if(!valid){ %>
 						<h6>Invalid username or password</h6>
 						<%}%>
 			<form class=".form-group" action="/user/<%=user._id%>?_method=PUT" method="post">
-				User Name: <input class="form-control" type="text" name="username" value="<%=user.username%>"/><br/>
-				Password: <input class="form-control" type="password" name="password"/><br/>
+				User Name: <input class="form-control" type="text" name="username" value="<%=user.username%>" maxlength='15'/><br/>
+				Password: <input class="form-control" type="password" name="password" maxlength='20'/><br/>
 
 				<input type="submit" value="Update User"/>
 			</form></br>
-		</div>
+		</section>
 		</main>
 		<footer class="footer">
 			<h1>};</h1>

@@ -2,9 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>CodeSnips(){</title>
     		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href='/css/style.css'>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
   </head>
   <body>
     <header class = 'header'>
@@ -28,10 +30,12 @@
     <%}%>
 </br>
     </header>
-  </br> </br></br></br>
   <section class="searchBar">
-  </br>
+
     <div class = "blurb">Store and share small blocks of code...</div>
+    <form class=".form-group" action="/code/new">
+      <input class="newCodeButton" type="submit" value="New CodeSnip"/>
+    </form>
     <form class=".form-group" action="/search/" method="POST">
       <input class = "searchBox" type="text" name="query" />
       <input class="searchButton" type="submit" value="Search"/></br>
@@ -42,9 +46,13 @@
     <% if(code !== undefined){ %>
       <% for(var i = 0; i < code.length; i++){ %>
           <div class="codeSnip">
-          <h4><a class = "titleHead" href="/code/<%=code[i]._id%>"> <%=code[i].title%></a></h4>
+            <div class="title">
+          <h4><a class = "titleHead" href="/code/<%=code[i]._id%>"> <%=code[i].title%></a></h4></div>
           <div class="description"><%=code[i].description%></br></div>
-          <div class="code"><%=code[i].code%></br></div>
+
+          <div class="code">
+              <pre class="prettyprint"><%=code[i].code%>        </pre>
+</br></div>
           <div class='tags'>
             <%for(var j=0; j<code[i].tags.length; j++){%>
               <a class = "singleTag" href='/<%=code[i].tags[j]%>'><%=code[i].tags[j];%></a>
