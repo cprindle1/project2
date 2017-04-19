@@ -13,19 +13,19 @@ router.post('/', function(req, res){
   User.findOne({username: req.body.username}, function(err, foundUser){
     if(foundUser !== null){
       if(bcrypt.compareSync(req.body.password, foundUser.password)){
-
         Code.find({}, function(err, foundCode){
           req.session.code=foundCode;
-          console.log("FOUND CODE: "+req.session.code);
-        req.session.currentuser = foundUser;
-        res.redirect('/');
+          req.session.currentuser = foundUser;
+          req.session.valid=true;
+          res.redirect('/');
       });
-
       }else{
-        res.send('wrong password');
-    }
+        req.session.valid=false;
+        res.redirect('/');
+      }
   }else{
-    res.send('invalid username');
+    req.session.valid=false;
+    res.redirect('/');
   }
   });
 });

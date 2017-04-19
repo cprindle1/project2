@@ -9,43 +9,30 @@
 	</head>
 	<body>
 		<header class='header'>
-			<h1 class='title'><%=code.title%></h1>
-			<nav>
-				<ul class = 'links'>
-					<li class = 'link'>
-						<a href="/">Home</a>
-					</li>
-					<li class ='link'>
-						<a href="/code">codes Index</a>
-					</li>
-				</ul>
-			</nav>
-		</header></br>
-		<main>
+			<h1 class='title'><%=code.title%>(){</h1>
 
-			<section class = 'code'>
-				<img class = 'image' src="<%=code.img%>">
-			</section>
-		<div class='by'>
-			<small>by: <a href="/user/<%=code.userID%>">Creator</a></small>
-		</div>
-			<section class='description'>
-				Title: <%=code.title%>
-			</section>
-			<section class='description'>
-				Code: <%=code.code%>
-			</section>
-			<section class='description'>
-				Description: <%=code.description%>
-			</section>
-			<section class='description'>
-				Tags: <%for(var i=0; i<code.tags.length; i++){%>
-					<a href='/<%=code.tags[i]%>'><%=code.tags[i];%></a>
-				<% } %>
-			</section>			<section class='description'>
-				Public: <%=code.public%>
-			</section>
+						<a class = "homeLink" href="/">Home</a>
+
+			</nav>
+		</header>
+	</br> </br></br></br>
+
+		<main>
+				<section class='snips'>
+			     <div class="codeSnipOne">
+			          <h4><a class = "titleHead" href="/code/<%=code._id%>"> <%=code.title%></a></h4>
+			          <div class="description"><%=code.description%></br></div>
+			          <div class="code"><%=code.code%></br></div>
+			          <div class='tags'>
+			            <%for(var j=0; j<code.tags.length; j++){%>
+			              <%=code.tags[j];%>
+			            <% } %>
+			          </div>
+			      </section>
+				</div>
+
 		</main>
+		<%if(user !== undefined){%>
 		<%if(user._id==code.userID){ %>
     <section>
     <form action="/code/<%=code._id%>?_method=DELETE" method="post">
@@ -55,7 +42,17 @@
     <a href="/code/<%=code._id%>/edit">Edit</a>
 	</section>
 	<% } %>
+	<% } %>
+
 
 </section>
+
+<footer class="footer">
+	<h1>};</h1>
+	<div class='footerContent'>
+		<a class = 'footerElement' href="#">Contact</a>
+		<a class = 'footerElement' href="#">About</a>
+	</div>
+</footer>
 	</body>
 </html>

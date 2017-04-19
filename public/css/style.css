@@ -1,2 +1,265 @@
-*{
+body{
+  font-family: courier;
+  background-color: #E6DDBC;
+}
+
+#invalid{
+  text-align: center;
+  color: #690203
+}
+
+.header{
+  background-color: black;
+  color: white;
+  position: absolute;
+  top: 0;
+  width: 100%
+}
+
+.header h1{
+  text-shadow: 3px 2px #690203;
+}
+
+.header h6{
+  margin: 0;
+  color: white;
+}
+
+.blurb{
+  color: white;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.description{
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background: white;
+}
+
+.searchBar{
+  background-color: darkgray;
+  text-align: right;
+  border-bottom: 3px solid black;
+  padding-top: 5px;
+}
+
+
+
+.snips{
+  position: relative;
+  text-align: center;
+}
+
+.tags{
+  color: white;
+  text-decoration: none;
+  position: absolute;
+  margin-bottom: 10px;
+}
+ .singleTag{
+   color: #690203;
+ }
+
+ .singleTag:hover{
+   cursor: pointer;
+   color: white;
+ }
+
+.titleHead{
+  color: black;
+}
+.titleHead:hover{
+  color: #690203;
+  cursor: pointer;
+}
+
+.codeSnip{
+  background-color: gray;
+  margin: 10px;
+  width: 250px;
+  height: 250px;
+  display: inline-block;
+  text-align: justify;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+}
+
+.codeSnipOne{
+  background-color: gray;
+  margin: 10px;
+  width: 50%;
+  height: 500px;
+  display: inline-block;
+  text-align: justify;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+}
+.registerUser{
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.code{
+  font-family: courier;
+  background: white;
+  height: 70%;
+}
+
+.codeSnip h4{
+  color: white;
+  margin: 1px;
+  text-transform: capitalize;
+}
+
+.loginBox{
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 25px;
+  margin-right: 5px;
+  display: inline-block;
+}
+.loginInput{
+  border-radius: 5px;
+}
+
+.resetLink{
+  color: black;
+  margin-right: 5px;
+}
+.resetLink:hover{
+  color: #690203;
+  cursor: pointer;
+}
+
+.homeLink{
+  position: absolute;
+  top:0;
+  right: 0;
+  margin-top: 20px;
+  margin-right: 5px;
+  color: gray;
+  float: right;
+}
+.homeLink:hover{
+  color: #690203;
+  cursor: pointer;
+}
+
+.editLink{
+    position: absolute;
+    top:0;
+    right: 0;
+    margin-top: 35px;
+    color: gray;
+    float: right;
+}
+.editLink:hover{
+  color: #690203;
+  cursor: pointer;
+}
+
+.codeBlock{
+  background-color: gray;
+  margin: 10px;
+  width: 50%;
+  height: 50%;
+  display: inline-block;
+  text-align: justify;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px black;
+}
+.userName{
+  color: white;
+}
+
+.userName:hover{
+  color: #690203;
+}
+
+.searchBox{
+  border-radius: 5px;
+}
+.logoutButton{
+  background-color: #690203;
+  border-radius: 4px;
+  color: white;
+}
+
+.loginButton{
+  background-color: #690203;
+  border-radius: 5px;
+  color: white;
+}
+
+.searchButton{
+  background-color: #690203;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+}
+
+.deleteButton{
+  background-color: #690203;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+  margin-bottom: 10px;
+
+}
+
+.newCodeButton{
+  background-color: #690203;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+  float: left;
+  margin-top: 15px;
+}
+
+.userEdit{
+  width: 50%;
+}
+
+#registerLink{
+  color: gray;
+}
+#registerLink:hover{
+  color: #690203;
+  cursor: pointer;
+}
+
+.footer{
+  border-top: 5px solid #690203;
+  color: white;
+  background-color: black;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer h1{
+  float: left;
+  text-shadow: 3px 2px #690203;
+}
+
+.footerContent{
+  margin-top: 25px;
+  text-align: center;
+}
+
+.footerElement{
+  margin-left: 25px;
+  margin-right: 25px;
+  color: darkgray;
+  text-shadow: 1px 1px #690203;
+}
+
+.footerElement:hover{
+  color: darkgray;
 }

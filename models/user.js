@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var Code = require('./code.js');
 
 var userSchema = Schema({
-  username: String,
+  username: {type:String, required: true, unique: true},
   password: String,
   codes: [Code.schema]
 });

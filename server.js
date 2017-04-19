@@ -30,10 +30,14 @@ var sessionController = require('./controllers/sessions.js');
 app.use('/sessions', sessionController);
 
 app.get('/', function(req, res){
+  if(req.session.valid===undefined){
+    req.session.valid=true;
+  }
   Code.find({public: true}, function(error, foundCode){
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
-      code: foundCode
+      code: foundCode,
+      valid: req.session.valid
     });
   });
 });
