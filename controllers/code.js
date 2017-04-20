@@ -4,8 +4,10 @@ var Code = require('../models/code.js');
 var User = require('../models/user.js');
 var session = require('express-session');
 var newCodes = require('../models/populateCode.js');
+var userRouts = require('../controllers/user.js');
 
 router.get('/', function(req, res){
+	console.log("Figures");
 	Code.find({}, function(err, foundcode){
 		res.render('code/index.ejs', {
 			code: foundcode
@@ -36,13 +38,10 @@ router.post('/', function(req, res){
 			createdCode.save(function(err, savedCode){
 			foundUser.codes.push(createdCode);
 			foundUser.save(function(err, savedUser){
-				res.render('user/show.ejs', {
-					code: req.session.code,
-					user: req.session.currentuser
+				res.redirect('/user/'+foundUser._id);
 				});
 		});
 	});
-});
 });
 });
 

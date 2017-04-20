@@ -26,6 +26,8 @@
 						<div class="codeSnip">
 							<h4 class="codeTitle"><a class = "titleHead" href="/code/<%=user.codes[i]._id%>"> <%=user.codes[i].title%></a></h4><%if(user.codes[i].public==true){%>
 								<h6 class="publicTag">&ltpublic&gt</h6>
+								<%}else{%>
+									<h6 class="publicTag">&ltprivate&gt</h6>
 								<%}%>
 								<div class="description"><%=user.codes[i].description%></br></div>
 								<div class="code"><pre class="prettyprint"><%=user.codes[i].code%></pre></br></div>
@@ -35,10 +37,10 @@
 											<%=user.codes[i].tags[j];%>
 											<% } %>
 										</div>
-										<form class="editCodeForm .form-group" action="/code/<%=user.codes[i]._id%>/edit">
+										<form class="deleteUserForm .form-group" action="/code/<%=user.codes[i]._id%>/edit">
 											<input class="editCodeButton" type="submit" value="Edit"/></br>
 										</form>
-										<form class="editCodeForm .form-group" action="/code/<%=user.codes[i]._id%>?_method=DELETE" method="post">
+										<form class="deleteUserForm .form-group" action="/code/<%=user.codes[i]._id%>?_method=DELETE" method="post">
 											<input class="editCodeButton" type="submit" value="Delete"/>
 										</form>
 									</div>

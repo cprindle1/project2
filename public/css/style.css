@@ -1,3 +1,33 @@
+#modal {
+  background-color: rgba(0,0,0,.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  overflow: auto;
+  display: none;
+}
+
+#modal-text {
+  background-color: darkgray;
+  color: #690203;
+  height: 150px;
+  width: 400px;
+  border-radius: 5px;
+  margin: 150px auto;
+  box-shadow: 5px 5px 5px black;
+  padding: 2px;
+  text-align: center;
+}
+
+#yes{
+  width: 100px;
+}
+
+.no{
+  width: 100px;
+}
+
 body{
   font-family: courier;
   background-color: #E6DDBC;
@@ -70,8 +100,10 @@ body{
 }
 
 .editCodeForm{
+  text-align: center;
+}
+.deleteUserForm{
   float: right;
-  /*text-align: right;*/
 }
 
 .snips{
@@ -127,8 +159,9 @@ body{
   overflow: auto;
 }
 .buttons{
-  margin-left: 40%;
-  margin-right: 45%;
+  text-align: center;
+  /*margin-left: 40%;
+  margin-right: 45%;*/
 }
 
 .codeSnipOne{
@@ -259,7 +292,6 @@ body{
   color: white;
   margin-right: 5px;
   margin-bottom: 10px;
-
 }
 
 .newCodeButton{
