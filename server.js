@@ -44,16 +44,22 @@ app.get('/', function(req, res){
   });
 });
 
-app.post("/search", function(req, res) {
+app.post("/", function(req, res) {
   Code.find(
     { $text : { $search : req.body.query } },
     { score : { $meta: "textScore" } }
   )
   .sort({ score : { $meta : 'textScore' } })
   .exec(function(err, results) {
+    var filterResults=[];
+    for(var i=0; i<results.length; i++){
+      if(results[i].public===true){
+        filterResults.push(results[i]);
+      }
+    }
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
-      code: results,
+      code: filterResults,
       valid: true
     });
   });
