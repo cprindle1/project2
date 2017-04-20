@@ -46,14 +46,12 @@ app.get('/', function(req, res){
 });
 
 app.post("/search", function(req, res) {
-  console.log("QUERY: " + req.body.query);
   Code.find(
     { $text : { $search : req.body.query } },
     { score : { $meta: "textScore" } }
   )
   .sort({ score : { $meta : 'textScore' } })
   .exec(function(err, results) {
-    console.log(results);
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
       code: results,
@@ -64,7 +62,6 @@ app.post("/search", function(req, res) {
 
 app.get('/:tag', function(req, res){
   Code.find({tags: {$elemMatch: {$eq: req.params.tag}}}, function(error, foundCode){
-    console.log("HITTING HERE");
     res.render('index.ejs', {
       currentuser: req.session.currentuser,
       code: foundCode,

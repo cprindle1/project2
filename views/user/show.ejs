@@ -31,10 +31,10 @@
 								<div class="code"><pre class="prettyprint"><%=user.codes[i].code%></pre></br></div>
 								<div class='tags'>
 									<div class="tagNames">
-									<%for(var j=0; j<user.codes[i].tags.length; j++){%>
-										<%=user.codes[i].tags[j];%>
-										<% } %>
-									</div>
+										<%for(var j=0; j<user.codes[i].tags.length; j++){%>
+											<%=user.codes[i].tags[j];%>
+											<% } %>
+										</div>
 										<form class="editCodeForm .form-group" action="/code/<%=user.codes[i]._id%>/edit">
 											<input class="editCodeButton" type="submit" value="Edit"/></br>
 										</form>

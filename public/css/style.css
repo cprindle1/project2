@@ -22,7 +22,7 @@ body{
 
 .header{
   position: sticky;
-  height: 75px;
+  height: 85px;
   z-index: 1;
   background-color: black;
   color: white;
