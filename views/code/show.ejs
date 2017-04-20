@@ -35,13 +35,13 @@
 		</main>
 		<%if(user !== undefined){%>
 		<%if(user._id==code.userID){ %>
-    <section>
-    <form action="/code/<%=code._id%>?_method=DELETE" method="post">
-        <input type="submit" value="Delete code"/>
-    </form>
-    <section>
-    <a href="/code/<%=code._id%>/edit">Edit</a>
-	</section>
+    <section class="buttons">
+			<form class="editCodeForm .form-group" action="/code/<%=code._id%>/edit">
+				<input class="editCodeButton" type="submit" value="Edit"/></br>
+			</form>
+			<form class="editCodeForm .form-group" action="/code/<%=code._id%>?_method=DELETE" method="post">
+				<input class="editCodeButton" type="submit" value="Delete"/>
+			</form>
 	<% } %>
 	<% } %>
 

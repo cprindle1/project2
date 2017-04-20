@@ -64,6 +64,7 @@ router.get('/:id/edit', function(req, res){
 });
 
 router.put('/:id', function(req, res){
+	if(req.body.password.length>=8 && (req.body.password === req.body.password2)){
 	if(req.body.password===""){
 		req.body.password=req.session.currentuser.password;
 	}else{
@@ -75,7 +76,9 @@ router.put('/:id', function(req, res){
 			User.findById(req.params.id, function(err, foundUpdatedUser){
 				req.session.currentuser = foundUpdatedUser;
 					res.render('user/show.ejs', {
-						user: foundUpdatedUser
+						user: foundUpdatedUser,
+						valid: req.session.valid=true
+
 				});
 			});
 		});
@@ -86,6 +89,12 @@ router.put('/:id', function(req, res){
 		});
 		}
 	});
+}else{
+	res.render('user/edit.ejs', {
+		user: req.session.currentuser,
+		valid: req.session.valid=false
+	});
+}
 });
 
 

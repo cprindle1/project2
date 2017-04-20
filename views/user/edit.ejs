@@ -29,6 +29,8 @@
 			<form class=".form-group" action="/user/<%=user._id%>?_method=PUT" method="post">
 				User Name: <input class="form-control" type="text" name="username" value="<%=user.username%>" maxlength='15'/><br/>
 				Password: <input class="form-control" type="password" name="password" maxlength='20'/><br/>
+				Confirm Password: <input class="form-control" type="password" name="password2" maxlength='20'/><br/>
+
 
 				<input type="submit" value="Update User"/>
 			</form></br>

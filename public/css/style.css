@@ -6,9 +6,18 @@ body{
 
 #invalid{
   text-align: center;
-  color: #690203
+  color: #690203;
 }
 
+.publicTag{
+  font-weight: bold;
+  text-align: right;
+  color: #690203;
+}
+
+.codeTitle{
+  float: left;
+}
 
 
 .header{
@@ -44,7 +53,7 @@ body{
   border-bottom: 1px solid black;
   background: white;
   overflow: auto;
-  height: 15%;
+  height: 10%;
 }
 
 .searchBar{
@@ -60,6 +69,11 @@ body{
   float: left;
 }
 
+.editCodeForm{
+  float: right;
+  /*text-align: right;*/
+}
+
 .snips{
   position: relative;
   text-align: center;
@@ -68,11 +82,18 @@ body{
 .tags{
   color: white;
   overflow: auto;
-  /*height: 5%;*/
   text-decoration: none;
   position: absolute;
-  /*margin-bottom: 10px;*/
+  display: inline-block;
+  width: 425px;
+  height: 50px;
 }
+.tagNames{
+  float: left;
+  width: 290px;
+  overflow: auto;
+}
+
  .singleTag{
    color: #690203;
  }
@@ -105,6 +126,10 @@ body{
   box-shadow: 5px 5px 5px black;
   overflow: auto;
 }
+.buttons{
+  margin-left: 40%;
+  margin-right: 45%;
+}
 
 .codeSnipOne{
   background-color: gray;
@@ -125,7 +150,7 @@ body{
 .code{
   font-family: courier;
   background: white;
-  height: 70%;
+  height: 68%;
   overflow: auto;
 }
 
@@ -243,6 +268,14 @@ body{
   color: white;
   margin-right: 5px;
   float: left;
+}
+
+.editCodeButton{
+  background-color: #690203;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+  margin-top: 10px;
 }
 
 .newCode{
