@@ -31,6 +31,7 @@ router.post('/', function(req, res){
 	}else{
 		req.body.public = false;
 	}
+	req.body.tags.toLowerCase();
 	req.body.tags=req.body.tags.split(" ");
 	User.findById(req.session.currentuser._id, function(err, foundUser){
 		Code.create(req.body, function(err, createdCode){
@@ -65,6 +66,7 @@ router.put('/:id', function(req, res){
 	}else{
 		req.body.public = false;
 	}
+	req.body.tags.toLowerCase();
 	req.body.tags=req.body.tags.split(" ");
 	Code.findByIdAndUpdate(req.params.id, req.body, {new:true}, function(err, updatedCode){
 		User.findOne({'codes._id': req.params.id}, function(err, foundUser){
