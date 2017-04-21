@@ -26,6 +26,9 @@ router.get('/new', function(req, res){
 	});
 
 router.post('/', function(req, res){
+	if(req.session.currentuser===undefined){
+		res.redirect('/');
+	}
 	if(req.body.public === 'on'){
 		req.body.public = true;
 	}else{
@@ -48,6 +51,9 @@ router.post('/', function(req, res){
 });
 
 router.get('/:id/edit', function(req, res){
+	if(req.session.currentuser===undefined){
+		res.redirect('/');
+	}
 	Code.findById(req.params.id, function(err, foundCode){
 		User.find({}, function(err, allUsers){
 			User.findOne({'codes._id':req.params.id}, function(err, foundCodeUser){
@@ -63,6 +69,9 @@ router.get('/:id/edit', function(req, res){
 
 
 router.put('/:id/save', function(req, res){
+	if(req.session.currentuser===undefined){
+		res.redirect('/');
+	}
 	User.findById(req.session.currentuser._id, function(err, foundUser){
 		Code.findById(req.params.id, function(err, foundCode){
 			foundUser.savedCodes.push(foundCode);
@@ -75,6 +84,9 @@ router.put('/:id/save', function(req, res){
 });
 
 router.put('/:id', function(req, res){
+	if(req.session.currentuser===undefined){
+		res.redirect('/');
+	}
 	if(req.body.public === 'on'){
 		req.body.public = true;
 	}else{
@@ -94,6 +106,9 @@ router.put('/:id', function(req, res){
 	});
 
 	router.delete('/:id/remove', function(req, res){
+		if(req.session.currentuser===undefined){
+			res.redirect('/');
+		}
 		User.findById(req.session.currentuser._id, function(err, foundUser){
 				foundUser.savedCodes.id(req.params.id).remove();
 				foundUser.save(function(err, data){
@@ -105,6 +120,9 @@ router.put('/:id', function(req, res){
 
 
 router.delete('/:id', function(req, res){
+	if(req.session.currentuser===undefined){
+		res.redirect('/');
+	}
 	Code.findByIdAndRemove(req.params.id, function(err, foundCodes){
 		User.findOne({'codes._id':req.params.id}, function(err, foundUser){
 			foundUser.codes.id(req.params.id).remove();

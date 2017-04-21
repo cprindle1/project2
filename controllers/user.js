@@ -7,6 +7,9 @@ var Code = require('../models/code.js');
 
 
 router.post('/', function(req, res){
+	if(req.session.currentuser===undefined){
+		res.redirect('/');
+	}
 	if(req.body.query!==undefined){
 		console.log("SEARCHING");
 
@@ -78,6 +81,9 @@ router.post('/', function(req, res){
 	});
 
 	router.get('/:id/edit', function(req, res){
+		if(req.session.currentuser===undefined){
+			res.redirect('/');
+		}
 		User.findById(req.params.id, function(err, founduser){
 			res.render('user/edit.ejs', {
 				user: founduser,
@@ -122,6 +128,9 @@ router.post('/', function(req, res){
 
 
 	router.get('/:id', function(req, res){
+		if(req.session.currentuser===undefined){
+			res.redirect('/');
+		}
 		User.findById(req.params.id, function(err, foundUser){
 			res.render('user/show.ejs', {
 				user: foundUser
@@ -131,6 +140,9 @@ router.post('/', function(req, res){
 
 
 	router.delete('/:id', function(req, res){
+		if(req.session.currentuser===undefined){
+			res.redirect('/');
+		}
 		User.findByIdAndRemove(req.params.id, function(err, foundUser){
 			var codeIds = [];
 			for(var i = 0; i< foundUser.codes.length; i++){
