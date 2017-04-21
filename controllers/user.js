@@ -7,9 +7,7 @@ var Code = require('../models/code.js');
 
 
 router.post('/', function(req, res){
-	if(req.session.currentuser===undefined){
-		res.redirect('/');
-	}
+
 	if(req.body.query!==undefined){
 		console.log("SEARCHING");
 
