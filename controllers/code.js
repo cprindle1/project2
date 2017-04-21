@@ -60,6 +60,18 @@ router.get('/:id/edit', function(req, res){
 	});
 });
 
+
+router.get('/:id/save', function(req, res){
+	User.findById(req.session.currentuser._id, function(err, foundUser){
+		Code.findById(req.params.id, function(err, foundCode){
+			foundUser.savedCodes.push(foundCode);
+			foundUser.save(function(err, savedUser){
+				res.redirect('/');
+			});
+		});
+	});
+});
+
 router.put('/:id', function(req, res){
 	if(req.body.public === 'on'){
 		req.body.public = true;
@@ -78,6 +90,16 @@ router.put('/:id', function(req, res){
 			});
 		});
 	});
+
+	router.delete('/:id/remove', function(req, res){
+		User.findById(req.session.currentuser._id, function(err, foundUser){
+				foundUser.savedCodes.id(req.params.id).remove();
+				foundUser.save(function(err, data){
+					res.redirect('/user/'+req.session.currentuser._id);
+			});
+		});
+	});
+
 
 router.delete('/:id', function(req, res){
 	Code.findByIdAndRemove(req.params.id, function(err, foundCodes){

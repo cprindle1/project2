@@ -57,6 +57,14 @@
                     <%for(var j=0; j<code[i].tags.length; j++){%>
                       <a class = "singleTag" href='/<%=code[i].tags[j]%>'><%=code[i].tags[j];%></a>
                       <% } %>
+                    <%  if(currentuser!==undefined){%>
+                      <%if(code[i].userID!==currentuser._id){%>
+                      <form class="deleteUserForm .form-group" action="/code/<%=code[i]._id%>/save">
+                        <input class="editCodeButton" type="submit" value="Save"/></br>
+                      </form>
+                      <%}%>
+                      <%}%>
+
                     </div>
                   </div>
                   <% } %>

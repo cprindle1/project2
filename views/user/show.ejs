@@ -51,6 +51,25 @@
 								</div>
 								<% } %>
 								<% } %>
+								<% if(user.savedCodes !== undefined){ %>
+									<% for(var i = 0; i < user.savedCodes.length; i++){ %>
+										<div class="codeSnip">
+											<h4 class="codeTitle"><a class = "titleHead" href="/code/<%=user.savedCodes[i]._id%>"> <%=user.savedCodes[i].title%></a></h4><h6 class="publicTag">&ltsaved&gt</h6>
+												<div class="description"><%=user.savedCodes[i].description%></br></div>
+												<div class="code"><pre class="prettyprint"><%=user.savedCodes[i].code%></pre></br></div>
+												<div class='tags'>
+													<div class="tagNames">
+														<%for(var j=0; j<user.savedCodes[i].tags.length; j++){%>
+															<%=user.savedCodes[i].tags[j];%>
+															<% } %>
+														</div>
+														<form class="deleteUserForm .form-group" action="/code/<%=user.savedCodes[i]._id%>/remove?_method=DELETE" method="post">
+															<input class="editCodeButton" type="submit" value="Remove"/>
+														</form>
+													</div>
+												</div>
+												<% } %>
+												<% } %>
 							</main>
 							<footer class="footer">
 								<h1>};</h1>

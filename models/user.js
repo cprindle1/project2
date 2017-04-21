@@ -5,7 +5,8 @@ var Code = require('./code.js');
 var userSchema = Schema({
   username: {type:String, required: true, unique: true},
   password: String,
-  codes: [Code.schema]
+  codes: [Code.schema],
+  savedCodes: [Code.schema]
 });
 
 var User = mongoose.model('User', userSchema);
