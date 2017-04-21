@@ -39,6 +39,7 @@ router.post('/', function(req, res){
 			createdCode.save(function(err, savedCode){
 			foundUser.codes.push(createdCode);
 			foundUser.save(function(err, savedUser){
+				req.session.currentuser=foundUser;
 				res.redirect('/user/'+foundUser._id);
 				});
 		});
@@ -61,11 +62,12 @@ router.get('/:id/edit', function(req, res){
 });
 
 
-router.get('/:id/save', function(req, res){
+router.put('/:id/save', function(req, res){
 	User.findById(req.session.currentuser._id, function(err, foundUser){
 		Code.findById(req.params.id, function(err, foundCode){
 			foundUser.savedCodes.push(foundCode);
 			foundUser.save(function(err, savedUser){
+				req.session.currentuser=foundUser;
 				res.redirect('/');
 			});
 		});
@@ -95,6 +97,7 @@ router.put('/:id', function(req, res){
 		User.findById(req.session.currentuser._id, function(err, foundUser){
 				foundUser.savedCodes.id(req.params.id).remove();
 				foundUser.save(function(err, data){
+					req.session.currentuser=foundUser;
 					res.redirect('/user/'+req.session.currentuser._id);
 			});
 		});
