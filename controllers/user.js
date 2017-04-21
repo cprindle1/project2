@@ -69,7 +69,7 @@ router.post('/', function(req, res){
 
 	router.get('/new', function(req, res){
 		res.render('user/new.ejs', {
-			valid: req.session.valid,
+			valid: req.session.valid=true,
 			username: req.session.username,
 			password: req.session.password
 		});
