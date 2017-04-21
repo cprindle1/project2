@@ -81,7 +81,7 @@ router.post('/', function(req, res){
 		User.findById(req.params.id, function(err, founduser){
 			res.render('user/edit.ejs', {
 				user: founduser,
-				valid: req.session.valid
+				valid: req.session.valid=true
 			});
 		});
 	});
